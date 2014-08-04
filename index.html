@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>flash shareobject</title>
+
+</head>
+<body>
+
+
+<div id="b5mswf"></div>
+
+
+
+<script type="text/javascript" src="swfobject.js"></script>
+<script type="text/javascript">
+
+    swfobject.embedSWF('shared.swf','b5mswf','0','0','11.0.0','expressInstall.swf',{},{'allowScriptAccess':'always'});
+
+    var json = {
+        code: 108,
+        msg: "data is empty",
+        data: null
+    };
+
+    //swf中完成SharedObject后，回调的方法
+    window._tj_user_info = function(uuid,ticket,datas) {
+      alert('uuid:'+uuid + ',ticket:'+ticket + ',datas:'+datas);
+    }
+
+    setTimeout(function() {
+        //把json传到swf中，执行成功后回到json
+        document.getElementById('b5mswf').callExternalInterface(JSON.stringify(json));
+    },1000);
+
+
+</script>
+</body>
+</html>
